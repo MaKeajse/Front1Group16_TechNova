@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TechNova | Inicio</title>
+  <link rel="stylesheet" href="../assets/technova.css">
+</head>
+<body>
+  <header class="header" aria-label="Barra de navegación">
+    <div class="brand">TechNova</div>
+    <nav class="nav" aria-label="Principal">
+      <a href="index.html">inicio</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="#">Proyectos</a>
+      <a class="btn" href="#">Contacto</a>
+      <a class="btn" href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero card">
+      <h1>Innovación para tu futuro digital</h1>
+      <p class="small">Creamos soluciones tecnológicas a la medida</p>
+      <div class="cta"><a class="btn" href="servicios.html">Ver servicios</a></div>
+    </section>
+
+    <h2>Servicios</h2>
+    <section id="destacados" class="grid grid-3" aria-label="Servicios destacados"></section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <strong>TechNova Solutions</strong>
+    <div class="spacer"></div>
+    <a class="link" href="index.html">inicio</a>
+    <a class="link" href="servicios.html">Servicios</a>
+    <span class="chip">in</span><span class="chip">X</span><span class="chip">W</span>
+  </footer>
+
+  <script src="../js/data.js"></script>
+  <script>
+    const wrap = document.getElementById('destacados');
+    loadServices().slice(0,3).forEach(s => {
+      const card = document.createElement('article');
+      card.className='card'; card.style.padding='24px';
+      card.innerHTML = `
+        <div style="font-size:20px; font-weight:700; margin-bottom:6px;">${s.nombre}</div>
+        <div class="small" style="margin-bottom:10px;">${formatMoney(s.precio)}</div>
+        <a class="btn" href="detalle.html?id=${s.id}">Ver Servicios</a>`;
+      wrap.appendChild(card);
+    });
+  </script>
+</body>
+</html>

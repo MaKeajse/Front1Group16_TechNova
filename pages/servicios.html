@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TechNova | Servicios</title>
+  <link rel="stylesheet" href="../assets/technova.css">
+</head>
+<body>
+  <header class="header" aria-label="Barra de navegación">
+    <div class="brand">TechNova</div>
+    <nav class="nav" aria-label="Principal">
+      <a href="index.html">inicio</a>
+      <a href="servicios.html" aria-current="page">Servicios</a>
+      <a href="#">Proyectos</a>
+      <a class="btn" href="#">Contacto</a>
+      <a class="btn" href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1 class="center">Nuestros Servicios</h1>
+    <section id="grid" class="grid grid-4" aria-label="Catálogo de servicios"></section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <strong>TechNova Solutions</strong><div class="spacer"></div>
+    <a class="link" href="index.html">inicio</a>
+    <a class="link" href="servicios.html">Servicios</a>
+    <span class="chip">in</span><span class="chip">X</span><span class="chip">W</span>
+  </footer>
+
+  <script src="../js/data.js"></script>
+  <script>
+    const grid = document.getElementById('grid');
+    loadServices().forEach(s => {
+      const el = document.createElement('article');
+      el.className='card'; el.style.padding='20px';
+      el.innerHTML = `
+        <div style="height:120px; background:#fafafa; border:1px dashed #cbd5e1; border-radius:8px; margin-bottom:12px; display:grid; place-items:center;">IMG</div>
+        <div style="font-weight:700; margin-bottom:6px;">${s.nombre}</div>
+        <div class="small" style="margin-bottom:12px;">${formatMoney(s.precio)}</div>
+        <a class="btn" href="detalle.html?id=${s.id}">Ver detalles</a>`;
+      grid.appendChild(el);
+    });
+  </script>
+</body>
+</html>

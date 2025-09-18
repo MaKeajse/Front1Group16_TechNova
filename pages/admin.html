@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TechNova | Administración</title>
+  <link rel="stylesheet" href="../assets/technova.css">
+</head>
+<body>
+  <header class="header"><div class="brand">TechNova</div><nav class="nav">
+    <a href="index.html">inicio</a><a href="servicios.html">Servicios</a><a href="#">Proyectos</a>
+    <a class="btn" href="#">Contacto</a><a class="btn" href="login.html">Login</a></nav></header>
+
+  <main class="container">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px">
+      <h1>Panel de Administración / Servicios</h1>
+      <a class="btn" href="servicio-form.html">Nuevo servicio</a>
+    </div>
+    <div class="card" style="padding:12px">
+      <table class="table" id="tabla">
+        <thead><tr><th>ID</th><th>Nombre</th><th>Precio</th><th>Stock</th><th>Promo</th><th>Acciones</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="footer"><strong>TechNova Solutions</strong><div class="spacer"></div>
+    <a class="link" href="index.html">inicio</a><a class="link" href="servicios.html">Servicios</a>
+    <span class="chip">in</span><span class="chip">X</span><span class="chip">W</span></footer>
+
+  <script src="../js/data.js"></script>
+  <script>
+    const tbody = document.querySelector('#tabla tbody');
+    function render(){
+      tbody.innerHTML='';
+      loadServices().forEach(s=>{
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${s.id}</td><td>${s.nombre}</td><td>${formatMoney(s.precio)}</td>
+          <td>${s.stock}</td><td>${s.en_promocion ? 'Sí':'No'}</td>
+          <td class="actions">
+            <a class="btn btn--light" href="servicio-form.html?id=${s.id}">Editar</a>
+            <button class="btn btn--warn" data-id="${s.id}">Eliminar</button>
+          </td>`;
+        tbody.appendChild(tr);
+      });
+    }
+    render();
+    tbody.addEventListener('click', (e)=>{
+      if(e.target.matches('button[data-id]')){
+        const id = e.target.getAttribute('data-id');
+        if(confirm('¿Eliminar servicio '+id+'?')){ deleteService(id); render(); }
+      }
+    });
+  </script>
+</body>
+</html>
