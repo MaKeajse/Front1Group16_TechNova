@@ -32,12 +32,23 @@
     <footer class="footer" role="contentinfo">
         <strong>TechNova Solutions</strong>
         <div class="spacer"></div>
+
         <a class="link" href="index.html">inicio</a>
         <a class="link" href="servicios.html">Servicios</a>
-        <span class="chip">in</span>
-        <span class="chip">X</span>
-        <span class="chip">W</span>
+
+        <div class="socials">
+            <a class="chip" href="" aria-label="LinkedIn" target="_blank" rel="noopener">
+            <img src="../assets/icons/linkedin.png" alt="">
+            </a>
+            <a class="chip" href="" aria-label="X" target="_blank" rel="noopener">
+            <img src="../assets/icons/twitter.png" alt="">
+            </a>
+            <a class="chip" href="" aria-label="WhatsApp" target="_blank" rel="noopener">
+            <img src="../assets/icons/whatsapp.png" alt="">
+            </a>
+        </div>
     </footer>
+
 
     <script src="../js/data.js"></script>
     <script>
@@ -63,15 +74,15 @@
 
             wrap.innerHTML = '';
             items.forEach(s => {
-            const icon = s.icon ? `${base}${s.icon}` : null;
-            const card = document.createElement('article');
-            card.className = 'card';
-            card.style.cssText = 'padding:24px;text-align:center';
-            card.innerHTML = `
-                ${icon ? `<img src="${icon}" alt="${s.nombre}" width="96" height="96" style="display:block;margin:0 auto 12px;">` : ''}
-                <div style="font-size:20px;font-weight:700;margin-bottom:8px;">${s.nombre}</div>
-                <a class="btn" href="detalle.html?id=${s.id}">Ver Servicios</a>`;
-            wrap.appendChild(card);
+                const icon = s.icon ? `${base}${s.icon}` : null;
+                const card = document.createElement('article');
+                card.className = 'card';
+                card.style.cssText = 'padding:24px;text-align:center';
+                card.innerHTML = `
+                    ${icon ? `<img src="${icon}" alt="${s.nombre}" width="96" height="96" style="display:block;margin:0 auto 12px;">` : ''}
+                    <div style="font-size:20px;font-weight:700;margin-bottom:8px;">${s.nombre}</div>
+                    <a class="btn" href="detalle.html?id=${s.id}">Ver Servicios</a>`;
+                wrap.appendChild(card);
             });
         });
     </script>

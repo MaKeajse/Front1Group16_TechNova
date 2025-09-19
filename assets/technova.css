@@ -53,3 +53,21 @@ body{
 .hero .cta{margin-top:16px}
 
 
+/* Footer: chips con íconos */
+.footer .socials { display:flex; gap:12px; align-items:center; }
+
+.footer .chip{
+  width:40px; height:40px; display:grid; place-items:center;
+  border:2px solid #fff; border-radius:10px; padding:0;
+  transition:transform .15s ease, opacity .15s ease;
+}
+
+/* El <img> va dentro del chip */
+.footer .chip img{
+  width:22px; height:22px; display:block;
+  /* si tus íconos son negros, esto los vuelve blancos sobre el footer oscuro */
+  filter: invert(1);
+  opacity:.9;
+}
+.footer .chip:hover{ transform:scale(1.06); }
+.footer .chip:hover img{ opacity:1; }
