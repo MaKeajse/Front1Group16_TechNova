@@ -1,54 +1,80 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TechNova | Inicio</title>
-  <link rel="stylesheet" href="../assets/technova.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TechNova | Inicio</title>
+    <link rel="stylesheet" href="../assets/technova.css">
 </head>
 <body>
-  <header class="header" aria-label="Barra de navegación">
+    <header class="header" aria-label="Barra de navegación">
     <div class="brand">TechNova</div>
     <nav class="nav" aria-label="Principal">
-      <a href="index.html">inicio</a>
-      <a href="servicios.html">Servicios</a>
-      <a href="#">Proyectos</a>
-      <a class="btn" href="#">Contacto</a>
-      <a class="btn" href="login.html">Login</a>
+        <a href="index.html">inicio</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="#">Proyectos</a>
+        <a class="btn" href="#">Contacto</a>
+        <a class="btn" href="login.html">Login</a>
     </nav>
-  </header>
+    </header>
 
-  <main class="container">
+    <main class="container">
     <section class="hero card">
-      <h1>Innovación para tu futuro digital</h1>
-      <p class="small">Creamos soluciones tecnológicas a la medida</p>
-      <div class="cta"><a class="btn" href="servicios.html">Ver servicios</a></div>
+        <h1>Innovación para tu futuro digital</h1>
+        <p class="small">Creamos soluciones tecnológicas a la medida</p>
+        <div class="cta"><a class="btn" href="servicios.html">Ver servicios</a></div>
     </section>
 
     <h2>Servicios</h2>
     <section id="destacados" class="grid grid-3" aria-label="Servicios destacados"></section>
-  </main>
+    </main>
 
-  <footer class="footer" role="contentinfo">
-    <strong>TechNova Solutions</strong>
-    <div class="spacer"></div>
-    <a class="link" href="index.html">inicio</a>
-    <a class="link" href="servicios.html">Servicios</a>
-    <span class="chip">in</span><span class="chip">X</span><span class="chip">W</span>
-  </footer>
+    <footer class="footer" role="contentinfo">
+        <strong>TechNova Solutions</strong>
+        <div class="spacer"></div>
+        <a class="link" href="index.html">inicio</a>
+        <a class="link" href="servicios.html">Servicios</a>
+        <span class="chip">in</span>
+        <span class="chip">X</span>
+        <span class="chip">W</span>
+    </footer>
 
-  <script src="../js/data.js"></script>
-  <script>
-    const wrap = document.getElementById('destacados');
-    loadServices().slice(0,3).forEach(s => {
-      const card = document.createElement('article');
-      card.className='card'; card.style.padding='24px';
-      card.innerHTML = `
-        <div style="font-size:20px; font-weight:700; margin-bottom:6px;">${s.nombre}</div>
-        <div class="small" style="margin-bottom:10px;">${formatMoney(s.precio)}</div>
-        <a class="btn" href="detalle.html?id=${s.id}">Ver Servicios</a>`;
-      wrap.appendChild(card);
-    });
-  </script>
+    <script src="../js/data.js"></script>
+    <script>
+        // Si mueves páginas a /pages, esta base mantiene la ruta correcta a los iconos
+        function iconsBase(){
+            return location.pathname.includes('/pages/') ? '../assets/icons/' : 'assets/icons/';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrap = document.getElementById('destacados');
+            if (!wrap) { 
+                console.error('#destacados no existe'); 
+                return; 
+            }
+            if (typeof loadServices !== 'function') { 
+                console.error('data.js no cargó'); 
+                return; 
+            }
+
+            const base = iconsBase();
+            const idsHome = [101,102,103]; // los tres del mockup
+            const items = loadServices().filter(s => idsHome.includes(s.id));
+
+            wrap.innerHTML = '';
+            items.forEach(s => {
+            const icon = s.icon ? `${base}${s.icon}` : null;
+            const card = document.createElement('article');
+            card.className = 'card';
+            card.style.cssText = 'padding:24px;text-align:center';
+            card.innerHTML = `
+                ${icon ? `<img src="${icon}" alt="${s.nombre}" width="96" height="96" style="display:block;margin:0 auto 12px;">` : ''}
+                <div style="font-size:20px;font-weight:700;margin-bottom:8px;">${s.nombre}</div>
+                <a class="btn" href="detalle.html?id=${s.id}">Ver Servicios</a>`;
+            wrap.appendChild(card);
+            });
+        });
+    </script>
+
 </body>
 </html>
