@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>TechNova | Servicio (Crear/Editar)</title>
+    <title>TechNova | Servicio (Crear/Editar) © F1-G16</title>
     <link rel="stylesheet" href="../assets/technova.css">
 </head>
 <body>
@@ -76,6 +76,13 @@
     </footer>
 
     <script src="../js/data.js"></script>
+    <script>
+        function iconsBase(){
+            // Si la página está dentro de /pages usa ../assets/icons/, si no, assets/icons/
+            return location.pathname.includes('/pages/') ? '../assets/icons/' : 'assets/icons/';
+        }
+    </script>
+
     <script>
         const params = new URLSearchParams(location.search);
         const id = params.get('id');
